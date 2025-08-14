@@ -54,7 +54,7 @@ Each script constructs a model with default hyperparameters, creates random toke
 ### Model details
 
 - **Encoder-only (`encoder_only.py`)**
-  - Token embedding scaled by \(\sqrt{d_\text{model}}\) and **learned** positional embeddings.
+  - Token embedding scaled by sqrt(d_model) and **learned** positional embeddings.
   - Pre-LayerNorm residual connections.
   - Multi-head self-attention without masks (bidirectional encoder).
   - Feed-forward uses GELU; final projection returns log-softmax over the vocabulary.
