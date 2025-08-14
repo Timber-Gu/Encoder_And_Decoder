@@ -57,13 +57,12 @@ Each script constructs a model with default hyperparameters, creates random toke
   - Token embedding scaled by sqrt(d_model) and **learned** positional embeddings.
   - Pre-LayerNorm residual connections.
   - Multi-head self-attention without masks (bidirectional encoder).
-  - Feed-forward uses GELU; final projection returns log-softmax over the vocabulary.
+  - Feed-forward uses ReLU; final projection returns log-softmax over the vocabulary.
 
 - **Encoder–Decoder (`encoder_decoder.py`)**
   - Input embeddings (scaled) + rotary positional encoding module applied to hidden states.
   - Standard encoder–decoder stack: self-attention (encoder), self-attention + cross-attention (decoder).
-  - Pre-LayerNorm residuals; feed-forward uses SwiGLU-style gating (`w1`, `w3` with SiLU, then `w2`).
-  - Helper `build_transformer(...)` constructs the stack end-to-end.
+  - Pre-LayerNorm residuals; feed-forward uses SwiGLU gating.
 
 - **Decoder-only Llama 3–style (`decoder_only(Llama 3).py`)**
   - Input embeddings initialized with Normal(0, 0.02); no \(\sqrt{d_\text{model}}\) scaling.
